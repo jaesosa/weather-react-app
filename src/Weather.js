@@ -1,4 +1,5 @@
 import React from "react";
+import ReactAnimatedWeather from "react-animated-weather";
 
 export default function Weather() {
   return (
@@ -6,7 +7,7 @@ export default function Weather() {
       <div className="row">
         <div className="col-6">
           <h1 className="city">New York</h1>
-          <h2>Monday 28 April 18:51</h2>
+          <h2>Tuesday 4 May 18:51</h2>
           <ul>
             <li>
               <span id="description">Light Rain</span>
@@ -18,7 +19,12 @@ export default function Weather() {
         </div>
 
         <div className="col-2 mt-5">
-          <img src="/images/weather.png" alt="" id="weather-icon" />
+          <ReactAnimatedWeather
+    icon="PARTLY_CLOUDY_NIGHT"
+    color="#CC5C82"
+    size= {100}
+    animate="true"
+  />
         </div>
         <div className="col-4 mt-5">
           <div className="temperature-today">
