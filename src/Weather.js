@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ReactAnimatedWeather from "react-animated-weather";
+import FormattedDate from "./FormattedDate";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
   
   function handleResponse(response) {
-  setTemperature(Math.round(response.data.main.temp));
-  setReady(true);
+  setWeatherData({
+    ready: true,
+    city: response.data.name,
+    date: new Date(response.data.dt * 1000),
+    temperature: Math.round(response.data.main.temp),
+    description: response.data.weather[0].description,
+    wind: Math.round(response.data.wind.speed),
+    humidity: response.data.main.humidity,
+    iconUrl: ''
+  });
   }
 
-  if (ready) {
+  if (weatherData.ready) {
 return (
   <div className="Weather">
   <form className="Search">
@@ -34,32 +41,29 @@ return (
     </form>
       <div className="row">
         <div className="col-6">
-          <h1 className="city">New York</h1>
-          <h2>Tuesday 4 May 18:51</h2>
+          <h1 className="city">{weatherData.city}</h1>
+          <h2>
+            <FormattedDate date={weatherData.date} />
+            </h2>
           <ul>
             <li>
-              <span id="description">Partly Cloudy</span>
+              <span id="description">{weatherData.description}</span>
             </li>
             <li>
-              Wind Speed: <span id="wind">2 </span> mph
+              Wind Speed: <span id="wind">{weatherData.wind} </span> mph
             </li>
             <li>
-              Precipitation: <span id="precipitation">4 </span>%
+              Humidity: <span id="humidity">{weatherData.humidity} </span>%
             </li>
           </ul>
         </div>
         <div className="col-2 mt-5">
-          <ReactAnimatedWeather
-    icon="PARTLY_CLOUDY_NIGHT"
-    color="#CC5C82"
-    size= {100}
-    animate="true"
-  />
+          <img src={weatherData.iconUrl} alt={weatherData.description} />
         </div>
         <div className="col-4 mt-5">
           <div className="temperature-today">
             <h3>
-              <span id="temperature"></span>63 <span id="unit">°F</span>
+              <span id="temperature"></span>{weatherData.temperature} <span id="unit">°F | °C</span>
             </h3>
           </div>
         </div>
@@ -72,8 +76,7 @@ return (
   );
   } else {
   const apiKey = "a6dd1b72720a6b8569eb4aedde277ef9";
-  const city = "New York"
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(handleResponse);
 
   return "Loading. . ."

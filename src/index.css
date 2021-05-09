@@ -55,3 +55,11 @@
 .temperature {
   font-size: 20px;
 }
+
+#description {
+  text-transform: capitalize;
+}
+
+#unit {
+  font-size: 25px;
+}
