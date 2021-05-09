@@ -1,3 +1,8 @@
+.App {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .container {
   background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   border: 1px solid #3e5f91;
@@ -5,30 +10,33 @@
   color: #445461;
   display: block;
   font-family: Georgia, "Times New Roman", Times, serif;
-  margin: 60px auto;
-  max-width: 650px;
-  padding: 40px 40px 30px 40px;
+  margin: 50px auto;
+  padding: 30px 20px 30px 20px;
 }
 
 .Search {
   display: block;
-  margin: 0 auto;
+  margin: 0 30px 0 30px;
 }
+
 .Weather h1 {
   font-size: 50px;
   margin-top: 15px;
+  padding: 0 0 0 30px;
 }
 
 .Weather h2 {
   font-size: 25px;
+  padding: 0 0 0 30px;
 }
 
 .Weather h3 {
   font-size: 70px;
 }
 
-.Weather li {
+.Weather ul {
   list-style-type: none;
+  padding: 0 0 0 30px;
   text-align: left;
 }
 

@@ -10,10 +10,13 @@ export default function Weather() {
           <h2>Tuesday 4 May 18:51</h2>
           <ul>
             <li>
-              <span id="description">Light Rain</span>
+              <span id="description">Partly Cloudy</span>
             </li>
             <li>
               Wind Speed: <span id="wind">2 </span> mph
+            </li>
+            <li>
+              Precipitation: <span id="precipitation">4 </span>%
             </li>
           </ul>
         </div>

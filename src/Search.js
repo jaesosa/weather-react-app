@@ -10,10 +10,11 @@ export default function Search() {
             className="form-control"
             id="search-text-input"
             placeholder="Enter your city. . ."
+            autoFocus="on"
           />
         </div>
         <div className="col-3">
-          <button type="submit" class="btn btn-secondary" value="Search">
+          <button type="submit" class="btn btn-secondary w-100" value="Search">
             Search
           </button>
         </div>
