@@ -19,6 +19,7 @@ export default function Weather(props) {
     icon: response.data.weather[0].icon
   });
   }
+
 function search() {
 const apiKey = "a6dd1b72720a6b8569eb4aedde277ef9";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -75,7 +76,7 @@ return (
           </ul>
         </div>
         <div className="col-2 mt-5">
-          <WeatherIcon code={props.icon} />
+          <WeatherIcon code={weatherData.icon} />
         </div>
         <div className="col-4 mt-5">
           <div className="temperature-today">
