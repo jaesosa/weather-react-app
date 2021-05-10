@@ -4,6 +4,7 @@ import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
   
   function handleResponse(response) {
   setWeatherData({
@@ -14,14 +15,28 @@ export default function Weather(props) {
     description: response.data.weather[0].description,
     wind: Math.round(response.data.wind.speed),
     humidity: response.data.main.humidity,
-    iconUrl: ''
+    iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   });
   }
+function search() {
+const apiKey = "a6dd1b72720a6b8569eb4aedde277ef9";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(handleResponse);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  search();
+}
+
+function handleCity(event) {
+ setCity(event.target.value);
+}
 
   if (weatherData.ready) {
 return (
   <div className="Weather">
-  <form className="Search">
+  <form className="Search" onSubmit={handleSubmit}>
       <div className="row">
         <div className="col-9">
           <input
@@ -30,6 +45,7 @@ return (
             id="search-text-input"
             placeholder="Enter your city. . ."
             autoFocus="on"
+            onChange={handleCity}
           />
         </div>
         <div className="col-3">
@@ -75,10 +91,7 @@ return (
     </div>
   );
   } else {
-  const apiKey = "a6dd1b72720a6b8569eb4aedde277ef9";
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(handleResponse);
-
+search();
   return "Loading. . ."
     }
   }
