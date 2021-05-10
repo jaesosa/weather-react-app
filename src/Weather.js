@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -15,7 +16,7 @@ export default function Weather(props) {
     description: response.data.weather[0].description,
     wind: Math.round(response.data.wind.speed),
     humidity: response.data.main.humidity,
-    iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    icon: response.data.weather[0].icon
   });
   }
 function search() {
@@ -74,7 +75,7 @@ return (
           </ul>
         </div>
         <div className="col-2 mt-5">
-          <img src={weatherData.iconUrl} alt={weatherData.description} />
+          <WeatherIcon code={props.icon} />
         </div>
         <div className="col-4 mt-5">
           <div className="temperature-today">
