@@ -3,6 +3,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherUnit from "./WeatherUnit";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -11,6 +12,7 @@ export default function Weather(props) {
   function handleResponse(response) {
   setWeatherData({
     ready: true,
+    coord: response.data.coord,
     city: response.data.name,
     date: new Date(response.data.dt * 1000),
     temperature: Math.round(response.data.main.temp),
@@ -77,19 +79,15 @@ return (
           </ul>
         </div>
         <div className="col-2 mt-5">
-          <WeatherIcon code={weatherData.icon} />
+          <WeatherIcon code={weatherData.icon} size={90} />
         </div>
-
         <div className="col-4 mt-5">
           <WeatherUnit fahrenheit={weatherData.temperature} />
         </div>
-
-      </div>
-      <footer>
         <hr />
-        <div className="weather-forecast" id="forecast"></div>
-      </footer>
-    </div>
+        <Forecast coordinates={weatherData.coord} />
+      </div>
+      </div>
   );
   } else {
 search();

@@ -8,9 +8,9 @@ function App() {
   return (
           <div className="container">
          <Weather defaultCity="New York" />
-         <Forecast />
-         <Footer />
+       <Footer />
        </div>
+         
   );
 }
 

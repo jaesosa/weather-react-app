@@ -1,67 +1,29 @@
+import axios from "axios";
 import React from "react";
 import ReactAnimatedWeather from "react-animated-weather";
+import WeatherIcon from "./WeatherIcon";
 
-export default function Forecast() {
-    return (
+export default function Forecast(props) {
+function handleResponse(response) {
+  console.log(response.data);
+}
+
+  const apiKey = "a6dd1b72720a6b8569eb4aedde277ef9";
+  const latitude = props.coordinates.lat;
+  const longitude = props.coordinates.lon;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+   
+  axios.get(apiUrl).then(handleResponse);
+  return (
         <div className="Week">
         <div className="row">
-            <div className="col-3">
-                Tue
-                <br />         
-    <ReactAnimatedWeather
-    icon="CLEAR_DAY"
-    color="#CC5C82"
-    size= {70}
-    animate="true"
-  />
-  <br />
-  <div className="temperature">
-  <strong>72°</strong> | 51°
-  </div>
+            <div className="col">
+               <span className="day"> Tue</span>      
+    <div className="icon"><WeatherIcon code="01d" size={40} /></div>
+  <span className="max-temp">72°</span>
+  <span className="min-temp">51°</span>
             </div>
-            <div className="col-3">
-                Wed
-                <br />         
-     <ReactAnimatedWeather
-    icon="RAIN"
-    color="#CC5C82"
-    size= {70}
-    animate="true"
-  />
-   <br />
-  <div className="temperature">
-  <strong>68°</strong> | 49°
-  </div>
-            </div>
-            <div className="col-3">
-                Thu
-                <br />         
-   <ReactAnimatedWeather
-    icon="WIND"
-    color="#CC5C82"
-    size= {70}
-    animate="true"
-  />
-   <br />
-  <div className="temperature">
-  <strong>65°</strong> | 40°
-  </div>
-            </div>
-            <div className="col-3">
-                Fri
-                <br />                
-  <ReactAnimatedWeather
-    icon="CLEAR_DAY"
-    color="#CC5C82"
-    size= {70}
-    animate="true"
-  />
-   <br />
-  <div className="temperature">
-  <strong>80°</strong> | 51°
-  </div>
-       </div>
-        </div>
-        </div>
+    </div>
+      </div>
     )
 }
