@@ -77,15 +77,15 @@ return (
             </li>
           </ul>
         </div>
-        <div className="col-2 mt-5">
+        <div className="col-sm-2 mt-5">
           <WeatherIcon code={weatherData.icon} size={90} />
         </div>
-        <div className="col-4 mt-5">
+        <div className="col-sm-4 mt-5">
 
           <div className="tempToday">
             <h3>
               <span id="temperature">{Math.round(weatherData.temperature)}</span> 
-              <span id="unit">°F</span>
+              <span className="float-right-top">°F</span>
             </h3>
           </div>
 

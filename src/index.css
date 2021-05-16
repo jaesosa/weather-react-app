@@ -1,5 +1,5 @@
 .App body {
-  max-width: 650px;
+  max-width: 600px;
   padding: 20px auto;
 }
 
@@ -71,10 +71,11 @@
   text-transform: capitalize;
 }
 
-#unit {
+.float-right-top {
   font-size: 25px;
   margin-left: 10px;
-  text-decoration: none;
+  position: relative;
+  top: -32px;
 }
 
 .icon {
