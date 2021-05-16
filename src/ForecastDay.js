@@ -25,7 +25,7 @@ return days[day];
         <div className="oneDay">
                <span className="day">{day()}</span>      
     <div className="icon"><WeatherIcon code={props.data.weather[0].icon} size={40} /></div>
-  <span className="max-temp">{maxTemp()}</span>
+  <span className="max-temp">{maxTemp()}</span> |
   <span className="min-temp">{minTemp()}</span>
             </div>
     )
