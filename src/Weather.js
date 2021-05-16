@@ -77,10 +77,10 @@ return (
             </li>
           </ul>
         </div>
-        <div className="col-sm-2 mt-5">
+        <div className="col mt-5">
           <WeatherIcon code={weatherData.icon} size={90} />
         </div>
-        <div className="col-4 mt-5">
+        <div className="col mt-5">
 
           <div className="tempToday">
             <h3>
